@@ -231,19 +231,19 @@ img {
 }
 .lds-ellipsis div:nth-child(1) {
   left: 8px;
-  animation: lds-ellipsis1 0.8s infinite;
+  animation: lds-ellipsis1 0.1s infinite;
 }
 .lds-ellipsis div:nth-child(2) {
   left: 8px;
-  animation: lds-ellipsis2 0.8s infinite;
+  animation: lds-ellipsis2 0.1s infinite;
 }
 .lds-ellipsis div:nth-child(3) {
   left: 32px;
-  animation: lds-ellipsis2 0.8s infinite;
+  animation: lds-ellipsis2 0.1s infinite;
 }
 .lds-ellipsis div:nth-child(4) {
   left: 56px;
-  animation: lds-ellipsis3 0.8s infinite;
+  animation: lds-ellipsis3 0.1s infinite;
 }
 @keyframes lds-ellipsis1 {
   0% {
