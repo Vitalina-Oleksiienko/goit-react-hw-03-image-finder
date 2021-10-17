@@ -7,8 +7,10 @@ import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
 import Modal from './components/Modal/Modal';
 import PixabyFetch from './components/PixabyFetch/PixabyFetch';
+import Searchbar from './components/Searchbar/Searchbar';
 
 import './index.css';
+
 
 const newPixabyFetch = new PixabyFetch();
 

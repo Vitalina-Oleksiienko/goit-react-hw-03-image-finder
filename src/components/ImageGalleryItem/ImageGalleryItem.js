@@ -21,6 +21,6 @@ export default class ImageGalleryItem extends Component {
     }
 }
 
-ImageGalleryItem.PropTypes = {
+ImageGalleryItem.propTypes = {
     images: PropTypes.arrayOf(PropTypes.object),
 };
