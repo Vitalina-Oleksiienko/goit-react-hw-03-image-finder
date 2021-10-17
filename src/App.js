@@ -30,10 +30,56 @@ export default class App extends Component {
       });
       newPixabyFetch.resetPage();
       this.setState({ status: 'pending', page: 1 });
-      
 
+      newPixabyFetch.searchQuery = this.state.search;
+      newPixabyFetch
+        .searchPhotos()
+        .then(res => {
+          if (res.data.hits.length !== 0) {
+            this.setState({ responseData: [...res.data.hits] });
+          } else alert('Nothing to show!');
+        })
+        .then(
+          this.setState(prevState => ({
+            page: prevState.page + 1,
+          })),
+        )
+        .finally(() => {
+          this.setState({ status: 'success' });
+        });
     }
   }
+
+  onSearchFormSubmit = search => {
+    this.setState({ search });
+  };
+  onClick = value => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+      status: 'pending',
+    }));
+    newPixabyFetch.searchPage = this.state.page;
+    newPixabyFetch
+      .searchPhotos()
+      .then(res => {
+        this.setState(prevState => ({
+          responseData: [...prevState.responseData, ...res.data.hits],
+        }));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        this.setState({ status: 'success' });
+        window.scrollTo({
+          top: document.documentElement.scrollHeight - 1200,
+          behavior: 'smooth',
+        });
+      });
+
+  };
+
+
 }
 
 function App() {
