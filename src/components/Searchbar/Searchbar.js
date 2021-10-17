@@ -40,7 +40,8 @@ onSubmit.e => {
         </form>
       </header>
     );
-  }
+};
+
 
 
 Searchbar.PropTypes = {
