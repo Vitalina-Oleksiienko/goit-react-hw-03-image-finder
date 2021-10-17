@@ -14,7 +14,7 @@ const newPixabyFetch = new PixabyFetch();
 
 export default class App extends Component {
   state = {
-    search: '';
+    search: '',
     page: 1,
     status: 'init',
     modalIsOpen: false,
@@ -78,16 +78,56 @@ export default class App extends Component {
       });
 
   };
+  onModalOpen = e => {
+    const found = this.state.responseData.find(
+      el => el.id.toString() === e.target.id,
+    );
 
+    this.setState(prevState => ({
+      modalIsOpen: !prevState.modalIsOpen,
+      largeImg: found.largeImageURL,
+    }));
+  };
+
+  onModalClose = e => {
+    if (
+      e.target.className === 'Overlay' &&
+      e.currentTarget.className === 'Overlay'
+    ) {
+      this.setState(prevState => ({
+        modalIsOpen: !prevState.modalIsOpen,
+      }));
+    }
+  };
+
+  onModalCloseByEsc = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  render() {
+    return (
+      <>
+        <Searchbar onSubmit={this.onSearchFormSubmit} />
+        <ImageGallery
+          images={this.state.responseData}
+          onModalOpen={this.onModalOpen}
+        />
+        {this.state.status === 'pending' && <Loader />}
+        {this.state.responseData.length > 0 && (
+          <Button onClick={this.onClick} />
+        )}
+        {this.state.modalIsOpen && (
+          <Modal
+            onModalOpen={this.onModalOpen}
+            onModalClose={this.onModalClose}
+            onModalCloseByEsc={this.onModalCloseByEsc}
+            largeImg={this.state.largeImg}
+          />
+        )}
+      </>
+    );
+  }
 
 }
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
-}
 
-export default App;
